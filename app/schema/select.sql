@@ -1,21 +1,8 @@
-SELECT TOP (1000) [ItemId]
-      ,[ItemName]
-      ,[ItemType]
-      ,[QuantityAvailable]
-      ,[QuantityTotal]
+SELECT TOP (1000) *
   FROM [master].[dbo].[Items]
 
-SELECT TOP (1000) [LoanId]
-      ,[ItemId]
-      ,[UserId]
-      ,[Quantity]
-      ,[LoanDate]
-      ,[DueDate]
-      ,[ReturnDate]
+SELECT TOP (1000) *
   FROM [master].[dbo].[Loan]
 
-SELECT TOP (1000) [UserId]
-      ,[Username]
-      ,[Password]
-      ,[Role]
+SELECT TOP (1000) *
   FROM [master].[dbo].[Users]
