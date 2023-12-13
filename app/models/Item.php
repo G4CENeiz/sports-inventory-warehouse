@@ -88,6 +88,34 @@ class Item {
         }
     }
 
+    public function getQuantityAvailableById($itemId) {
+        try {
+            $query = "SELECT QuantityAvailable FROM [master].[dbo].[Items] WHERE ItemId = :ItemId";
+            $stmt = $this->connect->prepare($query);
+            $stmt->bindParam(':ItemId', $itemId);
+            $stmt->execute();
+
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC); 
+            return $result['QuantityAvailable'];
+        } catch (\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function updateQuantityAvailable($itemId, $quantity) {
+        try {
+            $query = "UPDATE [master].[dbo].[Items] SET QuantityAvailable = :QuantityAvailable WHERE ItemId = :ItemId";
+            $stmt = $this->connect->prepare($query);
+            $stmt->bindParam(":ItemId", $itemId);
+            $stmt->bindParam(":QuantityAvailable", $quantity);
+            $stmt->execute();
+        } catch (\PDOException $e) {
+            echo "". $e->getMessage();
+            return null;
+        }
+    }
+
 }
 
 ?>

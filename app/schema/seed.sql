@@ -15,5 +15,5 @@ INSERT INTO [dbo].[Users] ([Username], [Password], [FirstName], [LastName], [Ide
 VALUES ('admin', 'password', 'Al', 'Azhar', '2241720263', 'Admin'),
         ('borrower', 'password', 'Yanuar', 'Virza', '2241720765', 'Borrower');
 
-INSERT INTO [dbo].[Loan] ([ItemId], [UserId], [Quantity], [LoanDate], [DueDate], [ReturnDate])
-VALUES ('1', '1', '2', '2022-01-01', '2022-01-10', NULL);
+INSERT INTO [dbo].[Loan] ([ItemId], [UserId], [Quantity], [LoanDate], [DueDate], [ReturnDate], [Status])
+VALUES ('1', '1', '2', '2022-01-01', '2022-01-10', NULL, 'Pending');

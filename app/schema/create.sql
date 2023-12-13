@@ -29,6 +29,7 @@ CREATE TABLE [dbo].[Loan]
     [LoanDate]          DATE            NOT NULL,
     [DueDate]           DATE            NOT NULL,
     [ReturnDate]        DATE            NULL,
+    [Status]        VARCHAR(255)        NOT NULL,
     CONSTRAINT [PK_Loan] PRIMARY KEY(LoanId) 
 );
 

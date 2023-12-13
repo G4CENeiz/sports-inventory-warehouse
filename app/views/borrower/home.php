@@ -21,9 +21,12 @@
                 <a class="nav-link active" aria-current="page" href="/admin/home">Home</a>
                 </li>
                 <li class="nav-item">
+                <a class="nav-link" href="/borrower/item">Item</a>
+                </li>
+                </li>
+                <li class="nav-item">
                 <a class="nav-link" href="/borrower/loan">Loan</a>
                 </li>
-
                 <li class="nav-item">
                 <a class="nav-link" href="/borrower/return">Return</a>
                 </li>

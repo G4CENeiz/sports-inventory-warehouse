@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
 
@@ -19,6 +20,9 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/admin/home">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/borrower/item">Item</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="/borrower/loan">Loan</a>
@@ -42,7 +46,7 @@
         <thead>
         <tr>
         <th scope="col">Loan Id</th>
-        <th scope="col">Borrower Id</th>
+        <th scope="col">User Id</th>
         <th scope="col">Item Id</th>
         <th scope="col">Quantity</th>
         <th scope="col">Loan Date</th>
@@ -51,38 +55,37 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td><a class="btn btn-primary" href="#">Return</a></td>
-        </tr>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>Returned</td>
-        </tr>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>Returned</td>
-        </tr>
-    </tbody>
+      <?php foreach ($loan_data as $loan) { ?>
+          <?php if ($loan['Status'] === 'Accepted') { ?>
+              <tr>
+                  <td><?php echo $loan['LoanId']; ?></td>
+                  <td><?php echo $loan['UserId']; ?></td>
+                  <td><?php echo $loan['ItemId']; ?></td>
+                  <td><?php echo $loan['Quantity']; ?></td>
+                  <td><?php echo $loan['LoanDate']; ?></td>
+                  <td><?php echo $loan['DueDate']; ?></td>
+                  <td>
+                  <?php if ($loan['ReturnDate'] !== NULL) { ?>
+                    <form action="/borrower/returnItem" method="post">
+                    <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
+                    <button disabled style="width: 100%;" type='submit' class="btn btn-primary">Returned</button>
+                  </form>
+                    <?php } else { ?>
+                  <form action="/borrower/returnItem" method="post">
+                    <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
+                    <input type="hidden" name="ItemId" value="<?php echo $loan['ItemId']; ?>">
+                    <input type="hidden" name="Quantity" value="<?php echo $loan['Quantity']; ?>">
+                    <button style="width: 100%;" type='submit' class="btn btn-primary">Return</button>
+                  </form>
+                  <?php } ?>
+                  </td>
+              </tr>
+          <?php } ?>
+      <?php } ?>
+  </tbody>
 
     </table>
     </div>
-
 
 
 

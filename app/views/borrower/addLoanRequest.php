@@ -43,35 +43,33 @@
     <!-- form -->
     <div class="container">
         <h2>Add Request</h2>
-        <form action="/admin/addItem" method="POST">
+        <form action="/borrower/addLoanRequest" method="POST">
         <div class="mb-3">
-                <label for="itemId" class="form-label">Item Id</label>
-                <select class="form-select" id="itemId" name="itemId" required>
+                <label for="ItemId" class="form-label">Item Id</label>
+                <select class="form-select" id="ItemId" name="ItemId" required>
                     <option value="">Select an option</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                    <?php foreach ($item_data as $item) { ?>
+                    <option value="<?php echo $item['ItemId']; ?>"><?php echo $item['ItemId']; ?></option>
+                    <?php } ?>
 
                 </select>
             </div>
             <div class="mb-3">
-                <label for="quantityTotal" class="form-label">Quantity</label>
-                <input type="number" min="0" class="form-control" id="quantityTotal" name="quantityTotal" required>
+                <label for="Quantity" class="form-label">Quantity</label>
+                <input type="number" min="0" class="form-control" id="Quantity" name="Quantity" required>
             </div>
             <div class="mb-3">
-                <label for="itemType" class="form-label">Loan Date</label>
-                <input type="date" class="form-control" id="itemType" name="itemType" required>
+                <label for="LoanDate" class="form-label">Loan Date</label>
+                <input type="date" class="form-control" id="LoanDate" name="LoanDate" required>
             </div>
             <div class="mb-3">
-                <label for="quantityAvailable" class="form-label">Due Date</label>
-                <input type="date" min="0" class="form-control" id="quantityAvailable" name="quantityAvailable" required>
+                <label for="DueDate" class="form-label">Due Date</label>
+                <input type="date" min="0" class="form-control" id="DueDate" name="DueDate" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </body>
 </html>

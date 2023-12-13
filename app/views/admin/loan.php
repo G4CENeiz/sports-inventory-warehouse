@@ -33,7 +33,7 @@
                 <a class="nav-link" href="/admin/return">Return</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/admin/logout">Logout</a>
+                <a class="nav-link" href="/logout">Logout</a>
                 </li>
             </ul>
             </div>
@@ -47,7 +47,7 @@
         <thead>
         <tr>
         <th scope="col">Loan Id</th>
-        <th scope="col">Borrower Id</th>
+        <th scope="col">User Id</th>
         <th scope="col">Item Id</th>
         <th scope="col">Quantity</th>
         <th scope="col">Loan Date</th>
@@ -56,47 +56,60 @@
         </tr>
         </thead>
         <tbody>
+        <?php foreach($loan_data as $loan) : ?>
         <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
+        <td><?= $loan['LoanId']; ?></td>
+        <td><?= $loan['UserId']; ?></td>
+        <td><?= $loan['ItemId']; ?></td>
+        <td><?= $loan['Quantity']; ?></td>
+        <td><?= $loan['LoanDate']; ?></td>
+        <td><?= $loan['DueDate']; ?></td>
         <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="#">Accept</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="#">Reject</a>
-        </td>
+        <?php if ($loan['Status'] === 'Accepted' OR $loan['Status'] === 'Rejected') { ?>
+            <div class="row">
+            <div class="col">
+                <form action="/admin/updateStatusLoan" method="post" onsubmit="return disableButton(this);">
+                    <input type="hidden" name="LoanId" value="<?= $loan['LoanId']; ?>">
+                    <input type="hidden" name="Status" value="Accepted">
+                    <button disabled style="width: 100%;" type='submit' class="btn btn-success btn-accept" data-rowid="<?= $loan['LoanId']; ?>">Accept</button>
+                </form>
+            </div>
+        <div class="col">
+            <form action="/admin/updateStatusLoan" method="post" onsubmit="return disableButton(this);">
+                <input type="hidden" name="LoanId" value="<?= $loan['LoanId']; ?>">
+                <input type="hidden" name="Status" value="Rejected">
+                <button disabled style="width: 100%;" type='submit' class="btn btn-danger btn-reject" data-rowid="<?= $loan['LoanId']; ?>">Reject</button>
+            </form>
+        </div>
+    </div>
+          <?php } else { ?>
+            <div class="row">
+        <div class="col">
+            <form action="/admin/updateStatusLoan" method="post">
+                <input type="hidden" name="LoanId" value="<?= $loan['LoanId']; ?>">
+                <input type="hidden" name="Status" value="Accepted">
+                <button style="width: 100%;" type='submit' class="btn btn-success btn-accept" data-rowid="<?= $loan['LoanId']; ?>">Accept</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/admin/updateStatusLoan" method="post">
+                <input type="hidden" name="LoanId" value="<?= $loan['LoanId']; ?>">
+                <input type="hidden" name="Status" value="Rejected">
+                <button style="width: 100%;" type='submit' class="btn btn-danger btn-reject" data-rowid="<?= $loan['LoanId']; ?>">Reject</button>
+            </form>
+        </div>
+    </div>
+            <?php } ?>
+</td>
         </tr>
-        <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="#">Accept</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="#">Reject</a>
-        </td>
-        </tr>
-        <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="#">Accept</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="#">Reject</a>
-        </td>
-        </tr>
+        <?php endforeach; ?>
     </tbody>
 
     </table>
     </div>
-    
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>

@@ -5,6 +5,8 @@ require_once '../app/models/User.php';
 use models\User;
 require_once '../app/models/Item.php';
 use models\Item;
+require_once '../app/models/Loan.php';
+use models\Loan;
 
 class Admin {
 
@@ -29,10 +31,36 @@ class Admin {
     }
 
     public function renderLoan() {
+        $loan = new Loan();
+        $loan_data = $loan->getAll();
         require_once '../app/views/admin/loan.php';
     }
 
+    public function updateStatusLoanById() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $loan = new Loan();
+            
+            $loanId = $_POST['LoanId'] ?? '';
+            $status = $_POST['Status'] ?? '';
+            
+            $result = $loan->updateLoanStatusById($loanId, $status);
+            if ($result) {
+                header('Location: /admin/loan');
+                exit;
+            } else {
+                echo "Failed to update loan status";
+            }
+        } else {
+            echo "Error: Request method not supported.";
+        }
+        
+
+    }
+
     public function renderReturn() {
+        $loan = new Loan();
+        $loan_data = $loan->getAll();
+        
         require_once '../app/views/admin/return.php';
     }
 

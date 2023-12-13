@@ -47,46 +47,29 @@
         <thead>
         <tr>
         <th scope="col">Loan Id</th>
-        <th scope="col">Borrower Id</th>
+        <th scope="col">User Id</th>
         <th scope="col">Item Id</th>
         <th scope="col">Quantity</th>
         <th scope="col">Loan Date</th>
         <th scope="col">Due Date</th>
         <th scope="col">Return Date</th>
-        <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
+        <?php foreach ($loan_data as $loan) : ?>
+          <?php if ($loan['ReturnDate'] !== NULL) { ?>
         <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
-        <td>Success</td>
+        <td><?= $loan['LoanId'] ?></td>
+        <td><?= $loan['UserId'] ?></td>
+        <td><?= $loan['ItemId'] ?></td>
+        <td><?= $loan['Quantity'] ?></td>
+        <td><?= $loan['LoanDate'] ?></td>
+        <td><?= $loan['DueDate'] ?></td>
+        <td><?= $loan['ReturnDate'] ?></td>
         </tr>
-        <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
-        <td>Pending</td>
-        </tr>
-        <tr>
-        <td scope="row">1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>2022-01-10</td>
-        <td>Pending</td>
-        </tr>
+        <?php } ?>
+
+        <?php endforeach; ?>
     </tbody>
 
     </table>

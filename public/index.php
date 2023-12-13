@@ -33,13 +33,23 @@ $route->add('POST', '/admin/deleteUser', Admin::class, 'deleteUser');
 $route->add('POST', '/admin/addItem', Admin::class, 'createItem');
 $route->add('POST', '/admin/editItem', Admin::class, 'editItem');
 $route->add('POST', '/admin/deleteItem', Admin::class, 'deleteItem');
+$route->add('POST', '/admin/updateStatusLoan', Admin::class, 'updateStatusLoanById');
 
 // borrower render
 $route->add('GET', '/borrower/home', Borrower::class, 'renderHome');
+$route->add('GET', '/borrower/item', Borrower::class, 'renderItem');
 $route->add('GET', '/borrower/loan', Borrower::class, 'renderLoan');
 $route->add('GET', '/borrower/status', Borrower::class, 'renderStatus');
 $route->add('GET', '/borrower/return', Borrower::class, 'renderReturn');
 $route->add('GET', '/borrower/addLoanRequest', Borrower::class, 'renderAddLoanRequest');
+
+// loan request
+$route->add('POST', '/borrower/getQuantityAvailable', Borrower::class, 'getQuantityAvailable');
+$route->add('POST', '/borrower/addLoanRequest', Borrower::class, 'createLoanRequest');
+
+// loan return
+$route->add('POST', '/borrower/returnItem', Borrower::class, 'returnItem');
+
 
 //run route
 $route->run();

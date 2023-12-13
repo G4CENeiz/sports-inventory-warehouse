@@ -21,9 +21,12 @@
                 <a class="nav-link" aria-current="page" href="/admin/home">Home</a>
                 </li>
                 <li class="nav-item">
+                <a class="nav-link" href="/borrower/item">Item</a>
+                </li>
+                </li>
+                <li class="nav-item">
                 <a class="nav-link active" href="/borrower/loan">Loan</a>
                 </li>
-
                 <li class="nav-item">
                 <a class="nav-link" href="/borrower/return">Return</a>
                 </li>
@@ -43,7 +46,7 @@
         <thead>
         <tr>
         <th scope="col">Loan Id</th>
-        <th scope="col">Borrower Id</th>
+        <th scope="col">User Id</th>
         <th scope="col">Item Id</th>
         <th scope="col">Quantity</th>
         <th scope="col">Loan Date</th>
@@ -52,33 +55,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>Accepted</td>
-        </tr>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>Pending</td>
-        </tr>
-        <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>2022-01-01</td>
-        <td>2022-01-10</td>
-        <td>Pending</td>
-        </tr>
+        <?php foreach ($loan_data as $loan) { ?>
+            <tr>
+            <td><?php echo $loan['LoanId']; ?></td>
+            <td><?php echo $loan['UserId']; ?></td>
+            <td><?php echo $loan['ItemId']; ?></td>
+            <td><?php echo $loan['Quantity']; ?></td>
+            <td><?php echo $loan['LoanDate']; ?></td>
+            <td><?php echo $loan['DueDate']; ?></td>
+            <td><?php echo $loan['Status']; ?></td>
+            </tr>
+        <?php } ?>
     </tbody>
 
     </table>
