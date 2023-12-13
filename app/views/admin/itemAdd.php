@@ -48,25 +48,26 @@
     <!-- form -->
     <div class="container">
     <h2>Add Item</h2>
-    <form action="/admin/addItem" method="POST">
+    <form action="/admin/addItem" method="post">
         <div class="mb-3">
-            <label for="itemName" class="form-label">Item Name</label>
-            <input type="text" class="form-control" id="itemName" name="itemName" required>
+            <label for="ItemName" class="form-label">Item Name</label>
+            <input type="text" class="form-control" id="ItemName" name="ItemName" required>
         </div>
         <div class="mb-3">
-            <label for="itemType" class="form-label">Item Type</label>
-            <input type="text" class="form-control" id="itemType" name="itemType" required>
+            <label for="ItemType" class="form-label">Item Type</label>
+            <input type="text" class="form-control" id="ItemType" name="ItemType" required>
         </div>
         <div class="mb-3">
-            <label for="quantityAvailable" class="form-label">Quantity Available</label>
-            <input type="number" min="0" class="form-control" id="quantityAvailable" name="quantityAvailable" required>
+            <label for="QuantityAvailable" class="form-label">Quantity Available</label>
+            <input type="number" min="0" class="form-control" id="QuantityAvailable" name="QuantityAvailable" required>
         </div>
         <div class="mb-3">
-            <label for="quantityTotal" class="form-label">Quantity Total</label>
-            <input type="number" min="0" class="form-control" id="quantityTotal" name="quantityTotal" required>
+            <label for="QuantityTotal" class="form-label">Quantity Total</label>
+            <input type="number" min="0" class="form-control" id="QuantityTotal" name="QuantityTotal" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>

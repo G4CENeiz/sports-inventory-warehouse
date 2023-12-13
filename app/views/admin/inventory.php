@@ -56,39 +56,28 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td scope="row">1</td>
-        <td>Basketball</td>
-        <td>Ball</td>
-        <td>10</td>
-        <td>10</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editItem">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteItem">Delete</a>
-        </td>
-        </tr>
-        <tr>
-        <td scope="row">2</td>
-        <td>Racket</td>
-        <td>Equipment</td>
-        <td>20</td>
-        <td>20</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editItem">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteItem">Delete</a>
-        </td>
-        </tr>
-        <tr>
-        <td scope="row">3</td>
-        <td>Gloves</td>
-        <td>Equipment</td>
-        <td>25</td>
-        <td>25</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editItem">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteItem">Delete</a>
-        </td>
-        </tr>
+        <?php foreach ($item_data as $item) { ?>
+            <tr>
+            <td><?php echo $item['ItemId']; ?></td>
+            <td><?php echo $item['ItemName']; ?></td>
+            <td><?php echo $item['ItemType']; ?></td>
+            <td><?php echo $item['QuantityAvailable']; ?></td>
+            <td><?php echo $item['QuantityTotal']; ?></td>
+            <td>
+            <div class="row">
+            <div class="col">
+                <a style="width: 100%;" class="btn btn-warning" href="/admin/editItem?ItemId=<?php echo $item['ItemId']; ?>">Edit</a>
+            </div>
+            <div class="col">
+                <form action="/admin/deleteItem" method="post">
+                    <input type="hidden" name="ItemId" value="<?php echo $item['ItemId']; ?>">
+                    <button style="width: 100%;" type='submit' class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+            </td>
+            </tr>
+        <?php } ?>
     </tbody>
 
     </table>

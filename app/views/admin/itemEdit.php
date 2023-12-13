@@ -49,21 +49,22 @@
     <div class="container">
     <h2>Edit Item</h2>
     <form action="/admin/addItem" method="POST">
+        <input type="hidden" name="ItemId" value="<?php echo $itemData['ItemId']; ?>">
         <div class="mb-3">
-            <label for="itemName" class="form-label">Item Name</label>
-            <input type="text" class="form-control" id="itemName" name="itemName" required>
+            <label for="ItemName" class="form-label">Item Name</label>
+            <input type="text" class="form-control" id="ItemName" name="ItemName" required value="<?php echo $itemData['ItemName']; ?>">
         </div>
         <div class="mb-3">
-            <label for="itemType" class="form-label">Item Type</label>
-            <input type="text" class="form-control" id="itemType" name="itemType" required>
+            <label for="ItemType" class="form-label">Item Type</label>
+            <input type="text" class="form-control" id="ItemType" name="ItemType" required value="<?php echo $itemData['ItemType']; ?>">
         </div>
         <div class="mb-3">
-            <label for="quantityAvailable" class="form-label">Quantity Available</label>
-            <input type="number" min="0" class="form-control" id="quantityAvailable" name="quantityAvailable" required>
+            <label for="QuantityAvailable" class="form-label">Quantity Available</label>
+            <input type="number" class="form-control" id="QuantityAvailable" name="QuantityAvailable" required value="<?php echo $itemData['QuantityAvailable']; ?>">
         </div>
         <div class="mb-3">
-            <label for="quantityTotal" class="form-label">Quantity Total</label>
-            <input type="number" min="0" class="form-control" id="quantityTotal" name="quantityTotal" required>
+            <label for="QuantityTotal" class="form-label">Quantity Total</label>
+            <input type="number" class="form-control" id="QuantityTotal" name="QuantityTotal" required value="<?php echo $itemData['QuantityTotal']; ?>">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
