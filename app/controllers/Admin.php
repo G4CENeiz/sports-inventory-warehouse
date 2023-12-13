@@ -4,6 +4,10 @@ namespace controllers;
 
 class Admin {
 
+    public function __construct() {
+        Auth::checkAuth('Admin');
+    }
+
     public function renderHome() {
         require_once '../app/views/admin/home.php';
     }

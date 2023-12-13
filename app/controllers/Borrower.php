@@ -3,6 +3,10 @@
 namespace controllers;
 
 class Borrower {
+
+    public function __construct() {
+        Auth::checkAuth('Borrower');
+    }
     
     public function renderHome() {
         require_once '../app/views/borrower/home.php';

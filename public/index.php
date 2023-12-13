@@ -11,7 +11,9 @@ use controllers\Borrower;
 
 $route = new Router();
 //auth
-$route->add('GET', '/login', Auth::class, 'renderLogin');
+$route->add('GET', '/login', Auth::class, 'login');
+$route->add('POST', '/login', Auth::class, 'loginProcess');
+$route->add('GET', '/logout', Auth::class, 'logout');
 
 //admin render
 $route->add('GET', '/admin/home', Admin::class, 'renderHome');
