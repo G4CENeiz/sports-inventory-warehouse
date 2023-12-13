@@ -26,6 +26,11 @@ $route->add('GET', '/admin/editUser', Admin::class, 'renderEditUser');
 $route->add('GET', '/admin/addItem', Admin::class, 'renderaddItem');
 $route->add('GET', '/admin/editItem', Admin::class, 'renderEditItem');
 
+//admin crud
+$route->add('POST', '/admin/addUser', Admin::class, 'createUser');
+$route->add('POST', '/admin/editUser', Admin::class, 'editUser');
+$route->add('POST', '/admin/deleteUser', Admin::class, 'deleteUser');
+
 // borrower render
 $route->add('GET', '/borrower/home', Borrower::class, 'renderHome');
 $route->add('GET', '/borrower/loan', Borrower::class, 'renderLoan');

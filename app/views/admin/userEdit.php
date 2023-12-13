@@ -14,7 +14,7 @@
   <body>
 
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-white">
         <div class="container">
             <a class="navbar-brand" href="#">Sports Inventory Warehouse</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,26 +48,34 @@
     <!-- form -->
     <div class="container">
     <h2>Edit User</h2>
-    <form action="/admin/addUser" method="POST">
+    <form action="/admin/editUser" method="POST">
+        <input type="hidden" name="UserId" value="<?php echo $userData['UserId']; ?>">
         <div class="mb-3">
-            <label for="nim" class="form-label">NIM</label>
-            <input type="text" class="form-control" id="nim" name="nim" required>
+            <label for="IdentityNumber" class="form-label">Identity Number</label>
+            <input type="text" class="form-control" id="IdentityNumber" name="IdentityNumber" required value="<?php echo $userData['IdentityNumber']; ?>">
         </div>
         <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <label for="Username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="Username" name="Username" required value="<?php echo $userData['Username']; ?>">
         </div>
         <div class="mb-3">
-            <label for="firstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" required>
+            <label for="FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" required value="<?php echo $userData['FirstName']; ?>">
         </div>
         <div class="mb-3">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" required>
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" required value="<?php echo $userData['LastName']; ?>">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="text" class="form-control" id="password" name="password" required>
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password" required value="<?php echo $userData['Password']; ?>">
+        </div>
+        <div class="mb-3">
+            <label for="Role" class="form-label">Role</label>
+            <select class="form-select" id="Role" name="Role" required>
+                <option value="Admin" <?php echo ($userData['Role'] === 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                <option value="Borrower" <?php echo ($userData['Role'] === 'Borrower') ? 'selected' : ''; ?>>Borrower</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>

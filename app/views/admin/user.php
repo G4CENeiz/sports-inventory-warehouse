@@ -9,7 +9,7 @@
   <body>
 
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-white">
         <div class="container">
             <a class="navbar-brand" href="#">Sports Inventory Warehouse</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,44 +47,39 @@
     <table class="table table-striped table-hover">
         <thead>
         <tr>
-        <th scope="col">NIM</th>
+        <th scope="col">User Id</th>
+        <th scope="col">Identity Number</th>
         <th scope="col">Username</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
+        <th scope="col">Role</th>
         <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td scope="row">2241720263</td>
-        <td>zharsuke</td>
-        <td>Al</td>
-        <td>Azhar</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editUser">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteUser">Delete</a>
-        </td>
-        </tr>
-        <tr>
-        <td scope="row">2241720819</td>
-        <td>yanuar</td>
-        <td>anu</td>
-        <td>inu</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editUser">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteUser">Delete</a>
-        </td>
-        </tr>
-        <tr>
-        <td scope="row">2241720236</td>
-        <td>virza</td>
-        <td>anu</td>
-        <td>inu</td>
-        <td>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-primary" href="/admin/editUser">Edit</a>
-            <a style="width: 30%; margin-inline: 5px" class="btn btn-danger" href="/admin/deleteUser">Delete</a>
-        </td>
-        </tr>
+        <?php foreach ($user_data as $user) { ?>
+            <tr>
+            <th scope="row"><?php echo $user['UserId']; ?></th>
+            <td><?php echo $user['IdentityNumber']; ?></td>
+            <td><?php echo $user['Username']; ?></td>
+            <td><?php echo $user['FirstName']; ?></td>
+            <td><?php echo $user['LastName']; ?></td>
+            <td><?php echo $user['Role']; ?></td>
+            <td>
+            <div class="row">
+            <div class="col">
+                <a style="width: 100%;" class="btn btn-warning" href="/admin/editUser?UserId=<?php echo $user['UserId']; ?>">Edit</a>
+            </div>
+            <div class="col">
+                <form action="/admin/deleteUser" method="post">
+                    <input type="hidden" name="UserId" value="<?php echo $user['UserId']; ?>">
+                    <button style="width: 100%;" type='submit' class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+            </td>
+            </tr>
+        <?php } ?>
     </tbody>
 
     </table>

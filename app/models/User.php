@@ -14,10 +14,10 @@ class User {
 
     public function getUserDataLogin($username, $password) {
         try {
-            $query = "SELECT * FROM [master].[dbo].[Users] WHERE Username = :username AND Password = :password";
+            $query = "SELECT * FROM [master].[dbo].[Users] WHERE Username = :Username AND Password = :Password";
             $stmt = $this->connect->prepare($query);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':Username', $username);
+            $stmt->bindParam(':Password', $password);
             $stmt->execute();
 
             return $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -42,14 +42,14 @@ class User {
 
     public function create($data) {
         try {
-            $query = "INSERT INTO [master].[dbo].[Users] (Username, Password, IdentityNumber, FirstName, LastName, Role) VALUES (:username, :password, :identityNumber, :firstName, :lastName, :role)";
+            $query = "INSERT INTO [master].[dbo].[Users] (Username, Password, IdentityNumber, FirstName, LastName, Role) VALUES (:Username, :Password, :IdentityNumber, :FirstName, :LastName, :Role)";
             $stmt = $this->connect->prepare($query);
-            $stmt->bindParam(':username', $data['username']);
-            $stmt->bindParam(':password', $data['password']);
-            $stmt->bindParam(':identityNumber', $data['identityNumber']);
-            $stmt->bindParam(':firstName', $data['firstName']);
-            $stmt->bindParam(':lastName', $data['lastName']);
-            $stmt->bindParam(':role', $data['role']);
+            $stmt->bindParam(':Username', $data['Username']);
+            $stmt->bindParam(':Password', $data['Password']);
+            $stmt->bindParam(':IdentityNumber', $data['IdentityNumber']);
+            $stmt->bindParam(':FirstName', $data['FirstName']);
+            $stmt->bindParam(':LastName', $data['LastName']);
+            $stmt->bindParam(':Role', $data['Role']);
             $stmt->execute();
 
             return $stmt->rowCount();
@@ -61,15 +61,15 @@ class User {
 
     public function update($data) {
         try {
-            $query = "UPDATE [master].[dbo].[Users] SET Username = :username, Password = :password, IdentityNumber = :identityNumber, FirstName = :firstName, LastName = :lastName, Role = :role WHERE UserId = :userId";
+            $query = "UPDATE [master].[dbo].[Users] SET Username = :Username, Password = :Password, IdentityNumber = :IdentityNumber, FirstName = :FirstName, LastName = :LastName, Role = :Role WHERE UserId = :UserId";
             $stmt = $this->connect->prepare($query);
-            $stmt->bindParam(':username', $data['username']);
-            $stmt->bindParam(':password', $data['password']);
-            $stmt->bindParam(':identityNumber', $data['identityNumber']);
-            $stmt->bindParam(':firstName', $data['firstName']);
-            $stmt->bindParam(':lastName', $data['lastName']);
-            $stmt->bindParam(':role', $data['role']);
-            $stmt->bindParam(':userId', $data['userId']);
+            $stmt->bindParam(':Username', $data['Username']);
+            $stmt->bindParam(':Password', $data['Password']);
+            $stmt->bindParam(':IdentityNumber', $data['IdentityNumber']);
+            $stmt->bindParam(':FirstName', $data['FirstName']);
+            $stmt->bindParam(':LastName', $data['LastName']);
+            $stmt->bindParam(':Role', $data['Role']);
+            $stmt->bindParam(':UserId', $data['UserId']);
             $stmt->execute();
 
             return $stmt->rowCount();
@@ -81,9 +81,9 @@ class User {
 
     public function delete($userId) {
         try {
-            $query = "DELETE FROM [master].[dbo].[Users] WHERE UserId = :userId";
+            $query = "DELETE FROM [master].[dbo].[Users] WHERE UserId = :UserId";
             $stmt = $this->connect->prepare($query);
-            $stmt->bindParam(':userId', $userId);
+            $stmt->bindParam(':UserId', $userId);
             $stmt->execute();
 
             return $stmt->rowCount();
@@ -95,9 +95,9 @@ class User {
 
     public function getDataById($userId) {
         try {
-            $query = "SELECT * FROM [master].[dbo].[Users] WHERE UserId = :userId";
+            $query = "SELECT * FROM [master].[dbo].[Users] WHERE UserId = :UserId";
             $stmt = $this->connect->prepare($query);
-            $stmt->bindParam(':userId', $userId);
+            $stmt->bindParam(':UserId', $userId);
             $stmt->execute();
 
             return $stmt->fetch(\PDO::FETCH_ASSOC);

@@ -16,7 +16,7 @@ class Connection {
         try {
             $this->connect = new PDO("sqlsrv:Server={$this->dbhost},{$this->dbport};Database={$this->dbname};Encrypt=true;TrustServerCertificate=true", $this->dbuser, $this->dbpass);
             $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            // echo "Connected successfully";
         } catch (\PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
             exit;
