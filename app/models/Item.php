@@ -25,6 +25,19 @@ class Item {
         }
     }
 
+    public function getAllItemAvailable() {
+        try {
+            $query = "SELECT * FROM dbo.GetItemWithAvailableQuantity()";
+            $stmt = $this->connect->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
     public function create($data) {
         try {
             $query = "INSERT INTO [master].[dbo].[Items] (ItemName, ItemType, QuantityAvailable, QuantityTotal) VALUES (:ItemName, :ItemType, :QuantityAvailable, :QuantityTotal)";

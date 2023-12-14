@@ -1,0 +1,1 @@
+SELECT UserId, Username, dbo.CalculateTotalQuantityLoanedByUser('borrower') AS TotalQuantityLoaned FROM Users WHERE Username = 'borrower';

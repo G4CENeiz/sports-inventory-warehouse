@@ -44,8 +44,8 @@
         <thead>
           <tr>
             <th scope="col">Loan Id</th>
-            <th scope="col">User Id</th>
-            <th scope="col">Item Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Item Name</th>
             <th scope="col">Quantity</th>
             <th scope="col">Loan Date</th>
             <th scope="col">Due Date</th>
@@ -56,8 +56,8 @@
           <?php foreach ($loan_data as $loan) { ?>
             <tr>
               <td><?php echo $loan['LoanId']; ?></td>
-              <td><?php echo $loan['UserId']; ?></td>
-              <td><?php echo $loan['ItemId']; ?></td>
+              <td><?php echo $loan['Username']; ?></td>
+              <td><?php echo $loan['ItemName']; ?></td>
               <td><?php echo $loan['Quantity']; ?></td>
               <td><?php echo $loan['LoanDate']; ?></td>
               <td><?php echo $loan['DueDate']; ?></td>

@@ -53,8 +53,28 @@ class Admin {
         } else {
             echo "Error: Request method not supported.";
         }
-        
 
+    }
+
+    public function renderTotalLoan() {
+        $loanModel = new Loan();
+        $totalLoans = $loanModel->GetTotalItemsLoaned();
+    
+        require_once '../app/views/admin/loanTotal.php';
+    }
+    
+    public function searchTotalLoan() {
+        if (isset($_POST['searchUsername'])) {
+            $username = $_POST['searchUsername'];
+    
+            $loanModel = new Loan();
+            $totalLoans = $loanModel->GetTotalItemsLoanedByUser($username);
+    
+            require_once '../app/views/admin/loanTotal.php';
+        } else {
+            // Handle if no search parameter is provided
+            echo "Error: No search parameter provided.";
+        }
     }
 
     public function renderReturn() {
@@ -62,6 +82,24 @@ class Admin {
         $loan_data = $loan->getAll();
         
         require_once '../app/views/admin/return.php';
+    }
+
+    public function returnItem() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $loan = new Loan();
+            $item = new Item();
+            $returnDate = date("Y-m-d");
+            $itemId = $_POST['ItemId'];
+            $quantity = $_POST['Quantity'];
+            $quantityAvailable = $item->getQuantityAvailableById($itemId);
+            $updateQuantityAvailable = $quantityAvailable + $quantity;
+            $item->updateQuantityAvailable($itemId, $updateQuantityAvailable);
+            
+            $loan->updateReturnDate($_POST['LoanId'], $returnDate);
+            header('Location: /admin/return');
+        } else {
+            echo "Error returning item.";
+        }
     }
 
     public function renderAddUser() {

@@ -18,13 +18,13 @@ class Borrower {
 
     public function renderItem() {
         $item = new Item();
-        $item_data = $item->getAll();
+        $item_data = $item->getAllItemAvailable();
         require_once '../app/views/borrower/item.php';
     }
 
     public function renderLoan() {
         $loan = new Loan();
-        $loan_data = $loan->getAll();
+        $loan_data = $loan->getJoinLoan();
         require_once '../app/views/borrower/loan.php';
     }
 
@@ -67,26 +67,6 @@ class Borrower {
             header('Location: /borrower/loan');
         } else {
             echo "Error creating loan request.";
-        }
-    }
-
-    public function returnItem() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $loan = new Loan();
-            $item = new Item();
-            $returnDate = date("Y-m-d");
-            $itemId = $_POST['ItemId'];
-            $quantity = $_POST['Quantity'];
-            $quantityAvailable = $item->getQuantityAvailableById($itemId);
-            $updateQuantityAvailable = $quantityAvailable + $quantity;
-            $item->updateQuantityAvailable($itemId, $updateQuantityAvailable);
-
-
-            
-            $loan->updateReturnDate($_POST['LoanId'], $returnDate);
-            header('Location: /borrower/return');
-        } else {
-            echo "Error returning item.";
         }
     }
 

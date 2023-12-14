@@ -44,38 +44,52 @@
     </div>
   </nav><br>
 
-  <!-- content -->
-  <div class="container">
-    <h2>Return Lists</h2>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Loan Id</th>
-          <th scope="col">User Id</th>
-          <th scope="col">Item Id</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Loan Date</th>
-          <th scope="col">Due Date</th>
-          <th scope="col">Return Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($loan_data as $loan) : ?>
-          <?php if ($loan['ReturnDate'] !== NULL) { ?>
-            <tr>
-              <td><?= $loan['LoanId'] ?></td>
-              <td><?= $loan['UserId'] ?></td>
-              <td><?= $loan['ItemId'] ?></td>
-              <td><?= $loan['Quantity'] ?></td>
-              <td><?= $loan['LoanDate'] ?></td>
-              <td><?= $loan['DueDate'] ?></td>
-              <td><?= $loan['ReturnDate'] ?></td>
-            </tr>
+    <!-- content -->
+    <div class="container">
+      <h2>Return Item</h2>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Loan Id</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Item Id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Loan Date</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($loan_data as $loan) { ?>
+            <?php if ($loan['Status'] === 'Accepted') { ?>
+              <tr>
+                <td><?php echo $loan['LoanId']; ?></td>
+                <td><?php echo $loan['UserId']; ?></td>
+                <td><?php echo $loan['ItemId']; ?></td>
+                <td><?php echo $loan['Quantity']; ?></td>
+                <td><?php echo $loan['LoanDate']; ?></td>
+                <td><?php echo $loan['DueDate']; ?></td>
+                <td>
+                  <?php if ($loan['ReturnDate'] !== NULL) { ?>
+                    <form action="/admin/returnItem" method="post">
+                      <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
+                      <button disabled style="width: 100%;" type='submit' class="btn btn-primary">Returned</button>
+                    </form>
+                  <?php } else { ?>
+                    <form action="/admin/returnItem" method="post">
+                      <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
+                      <input type="hidden" name="ItemId" value="<?php echo $loan['ItemId']; ?>">
+                      <input type="hidden" name="Quantity" value="<?php echo $loan['Quantity']; ?>">
+                      <button style="width: 100%;" type='submit' class="btn btn-primary">Return</button>
+                    </form>
+                  <?php } ?>
+                </td>
+              </tr>
+            <?php } ?>
           <?php } ?>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
+        </tbody>
+      </table>
+    </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
