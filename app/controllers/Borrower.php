@@ -33,8 +33,9 @@ class Borrower {
     }
 
     public function renderReturn() {
+        $user = $_SESSION['Username'];
         $loan = new Loan();
-        $loan_data = $loan->getAll();
+        $loan_data = $loan->getByUsername($user);
         require_once '../app/views/borrower/return.php';
     }
 

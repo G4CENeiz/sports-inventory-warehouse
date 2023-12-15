@@ -5,8 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <style>
-    .center-div {
+    <style>
+    .navbar a:hover {
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      border: #000000 solid 2px;
+      font-weight: bold;
+    }.center-div {
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -22,6 +30,14 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        .jumbotron {
+          padding: 50px 0;
+        }
+        
+        body {
+          font-family: 'Quicksand', sans-serif;
+        }
   </style>
 </head>
 <body>
@@ -39,7 +55,7 @@
           <label for="Password" class="form-label">Password</label>
           <input type="password" class="form-control" id="Password" name="Password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-dark">Login</button>
       </form>
     </div>
   </div>

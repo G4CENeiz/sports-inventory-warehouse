@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+    .navbar a:hover {
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      border: #000000 solid 2px;
+      font-weight: bold;
+    }        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        .jumbotron {
+          padding: 50px 0;
+        }
+        
+        body {
+          font-family: 'Quicksand', sans-serif;
+        }
+  </style>
 </head>
 <body>
 
@@ -30,6 +48,9 @@
             <a class="nav-link" href="/admin/loan">Loan</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/admin/totalLoan">Total Loan</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/admin/return">Return</a>
           </li>
           <li class="nav-item">
@@ -43,7 +64,7 @@
   <!-- content -->
   <div class="container">
     <h2>User Management</h2>
-    <a class="btn btn-primary" href="/admin/addUser">Add User</a>
+    <a class="btn btn-dark" href="/admin/addUser">Add User</a>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -68,12 +89,12 @@
             <td>
               <div class="row">
                 <div class="col">
-                  <a style="width: 100%;" class="btn btn-warning" href="/admin/editUser?UserId=<?php echo $user['UserId']; ?>">Edit</a>
+                  <a style="width: 100%;" class="btn btn-dark" href="/admin/editUser?UserId=<?php echo $user['UserId']; ?>">Edit</a>
                 </div>
                 <div class="col">
                   <form action="/admin/deleteUser" method="post">
                     <input type="hidden" name="UserId" value="<?php echo $user['UserId']; ?>">
-                    <button style="width: 100%;" type='submit' class="btn btn-danger">Delete</button>
+                    <button style="width: 100%;" type='submit' class="btn btn-dark">Delete</button>
                   </form>
                 </div>
               </div>

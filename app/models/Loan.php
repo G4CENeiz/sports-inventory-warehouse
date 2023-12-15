@@ -29,6 +29,25 @@ class Loan {
         }
     }
 
+    public function getByUsername($username) {
+        try {
+            $query = "SELECT l.LoanId, u.Username, i.ItemName, l.Quantity, l.LoanDate, l.DueDate, l.ReturnDate, l.Status
+                      FROM [master].[dbo].[Loan] l
+                      INNER JOIN [dbo].[Users] u ON l.UserId = u.UserId
+                      INNER JOIN [dbo].[Items] i ON l.ItemId = i.ItemId
+                      WHERE u.Username = :Username";
+    
+            $stmt = $this->connect->prepare($query);
+            $stmt->bindParam(':Username', $username, \PDO::PARAM_STR);
+            $stmt->execute();
+    
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
     public function create($data) {
         try {
             $query = "INSERT INTO [master].[dbo].[Loan] (ItemId, UserId, Quantity, LoanDate, DueDate, ReturnDate, Status) VALUES (:ItemId, :UserId, :Quantity, :LoanDate, :DueDate, NULL, :Status)";

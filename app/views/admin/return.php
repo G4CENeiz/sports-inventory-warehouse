@@ -7,6 +7,24 @@
   <title>Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <style>
+    .navbar a:hover {
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      border: #000000 solid 2px;
+      font-weight: bold;
+    }          @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        .jumbotron {
+          padding: 50px 0;
+        }
+        
+        body {
+          font-family: 'Quicksand', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,8 +33,7 @@
   <nav class="navbar navbar-expand-lg bg-white">
     <div class="container">
       <a class="navbar-brand" href="#">Sports Inventory Warehouse</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +51,10 @@
             <a class="nav-link" href="/admin/loan">Loan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/admin/return">return</a>
+            <a class="nav-link" href="/admin/totalLoan">Total Loan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/return">Return</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -47,7 +67,7 @@
     <!-- content -->
     <div class="container">
       <h2>Return Item</h2>
-      <a style="width: 20%;" class="btn btn-success" href="/admin/returnReport">Print Return Report</a>
+      <a style="width: 20%;" class="btn btn-dark" href="/admin/returnReport">Print Return Report</a>
 
       <table class="table table-striped table-hover">
         <thead>
@@ -84,14 +104,14 @@
                   <?php if ($loan['ReturnDate'] !== NULL) { ?>
                     <form action="/admin/returnItem" method="post">
                       <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
-                      <button disabled style="width: 100%;" type='submit' class="btn btn-primary">Returned</button>
+                      <button disabled style="width: 100%;" type='submit' class="btn btn-dark">Returned</button>
                     </form>
                   <?php } else { ?>
                     <form action="/admin/returnItem" method="post">
                       <input type="hidden" name="LoanId" value="<?php echo $loan['LoanId']; ?>">
                       <input type="hidden" name="ItemId" value="<?php echo $loan['ItemId']; ?>">
                       <input type="hidden" name="Quantity" value="<?php echo $loan['Quantity']; ?>">
-                      <button style="width: 100%;" type='submit' class="btn btn-primary">Return</button>
+                      <button style="width: 100%;" type='submit' class="btn btn-dark">Return</button>
                     </form>
                   <?php } ?>
                 </td>

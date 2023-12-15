@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title>Borrower</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <style>
+    .navbar a:hover {
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      border: #000000 solid 2px;
+      font-weight: bold;
+    }          @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        .jumbotron {
+          padding: 50px 0;
+        }
+        
+        body {
+          font-family: 'Quicksand', sans-serif;
+        }
+    </style>
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-white">
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg bg-white">
       <div class="container">
         <a class="navbar-brand" href="#">Sports Inventory Warehouse</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,12 +52,12 @@
           </ul>
         </div>
       </div>
-    </nav>
-    <br>
+    </nav><br>
+
     <!-- content -->
     <div class="container">
       <h2>Loan Item</h2>
-      <a class="btn btn-primary" href="/borrower/addLoanRequest">Add Request</a>
+      <a class="btn btn-dark" href="/borrower/addLoanRequest">Add Request</a>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
