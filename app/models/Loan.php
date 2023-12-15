@@ -14,10 +14,14 @@ class Loan {
 
     public function getAll() {
         try {
-            $query = "SELECT * FROM [master].[dbo].[Loan]";
+            $query = "SELECT l.LoanId, u.Username, i.ItemName, l.Quantity, l.LoanDate, l.DueDate, l.ReturnDate, l.Status
+                      FROM [master].[dbo].[Loan] l
+                      INNER JOIN [dbo].[Users] u ON l.UserId = u.UserId
+                      INNER JOIN [dbo].[Items] i ON l.ItemId = i.ItemId";
+            
             $stmt = $this->connect->prepare($query);
             $stmt->execute();
-
+    
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             echo "Error: " . $e->getMessage();

@@ -129,6 +129,22 @@ class Item {
         }
     }
 
+    public function GetItemByNameAndType($data) {
+        try {
+            $query = "SELECT * FROM [master].[dbo].[Items] WHERE ItemName = :ItemName OR ItemType = :ItemType";
+            
+            $stmt = $this->connect->prepare($query);
+            $stmt->bindParam(':ItemName', $data['ItemName']);
+            $stmt->bindParam(':ItemType', $data['ItemType']);
+            $stmt->execute();
+    
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
 }
 
 ?>

@@ -40,35 +40,50 @@ class Borrower {
 
     public function renderAddLoanRequest() {
         $item = new Item();
-        $item_data = $item->getAll();
+        $item_data = $item->getAllItemAvailable();
         require_once '../app/views/borrower/addLoanRequest.php';
     }
 
     public function createLoanRequest() {
-        $data = [
-            'UserId' => $_SESSION['UserId'],
-            'ItemId' => $_POST['ItemId'],
-            'Quantity' => $_POST['Quantity'],
-            'LoanDate' => $_POST['LoanDate'],
-            'DueDate' => $_POST['DueDate'],
-            'Status' => 'Pending'
-        ];
-
-        $loan = new Loan();
-        $rowCount = $loan->create($data);
-
-        $item = new Item();
-        $quantityAvailable = $item->getQuantityAvailableById($_POST['ItemId']);
+        $itemId = $_POST['ItemId'];
         $requestedQuantity = $_POST['Quantity'];
-        $updateQuantityAvailable = $quantityAvailable - $requestedQuantity;
-        $item->updateQuantityAvailable($_POST['ItemId'], $updateQuantityAvailable);
-
-        if ($rowCount) {
-            header('Location: /borrower/loan');
+        $loanDate = $_POST['LoanDate'];
+        $dueDate = $_POST['DueDate'];
+    
+        if ($dueDate <= $loanDate) {
+            echo "Error: Due Date should be more than Loan Date.";
+            return;
+        }
+    
+        $item = new Item();
+        $quantityAvailable = $item->getQuantityAvailableById($itemId);
+    
+        if ($requestedQuantity > $quantityAvailable) {
+            echo "Error: Quantity requested exceeds available quantity.";
         } else {
-            echo "Error creating loan request.";
+            $data = [
+                'UserId' => $_SESSION['UserId'],
+                'ItemId' => $itemId,
+                'Quantity' => $requestedQuantity,
+                'LoanDate' => $loanDate,
+                'DueDate' => $dueDate,
+                'Status' => 'Pending'
+            ];
+    
+            $loan = new Loan();
+            $rowCount = $loan->create($data);
+    
+            $updateQuantityAvailable = $quantityAvailable - $requestedQuantity;
+            $item->updateQuantityAvailable($itemId, $updateQuantityAvailable);
+    
+            if ($rowCount) {
+                header('Location: /borrower/loan');
+            } else {
+                echo "Error creating loan request.";
+            }
         }
     }
+    
 
 }
 

@@ -44,11 +44,11 @@
   <h2>Add Request</h2>
   <form action="/borrower/addLoanRequest" method="POST">
     <div class="mb-3">
-      <label for="ItemId" class="form-label">Item Id</label>
+      <label for="ItemId" class="form-label">Item Name</label>
       <select class="form-select" id="ItemId" name="ItemId" required>
         <option value="">Select an option</option>
         <?php foreach ($item_data as $item) { ?>
-          <option value="<?php echo $item['ItemId']; ?>"><?php echo $item['ItemId']; ?></option>
+          <option value="<?php echo $item['ItemId']; ?>"><?php echo $item['ItemId']; ?> - <?php echo $item['ItemName']; ?></option>
         <?php } ?>
       </select>
     </div>

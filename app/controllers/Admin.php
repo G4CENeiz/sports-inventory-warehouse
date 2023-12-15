@@ -2,6 +2,7 @@
 
 namespace controllers;
 require_once '../app/models/User.php';
+use DateTime;
 use models\User;
 require_once '../app/models/Item.php';
 use models\Item;
@@ -28,6 +29,36 @@ class Admin {
         $item = new Item();
         $item_data = $item->getAll();
         require_once '../app/views/admin/inventory.php';
+    }
+
+    public function getItem() {
+        if (isset($_POST['data'])) {
+            $data['ItemName'] = $_POST['data'] ?? '';
+            $data['ItemType'] = $_POST['data'] ??'';
+
+            $item = new Item();
+            $item_data = $item->GetItemByNameAndType($data);
+
+            require_once '../app/views/admin/inventory.php';
+        }
+    }
+
+    public function renderItemReport() {
+        $item = new Item();
+        $item_data = $item->getAll();
+        require_once '../app/views/admin/itemReport.php';
+    }
+
+    public function renderLoanReport() {
+        $loan = new Loan();
+        $loan_data = $loan->getAll();
+        require_once '../app/views/admin/loanReport.php';
+    }
+    
+    public function renderReturnReport() {
+        $return = new Loan();
+        $return_data = $return->getAll();
+        require_once '../app/views/admin/returnReport.php';
     }
 
     public function renderLoan() {

@@ -27,6 +27,9 @@ $route->add('GET', '/admin/addItem', Admin::class, 'renderaddItem');
 $route->add('GET', '/admin/editItem', Admin::class, 'renderEditItem');
 $route->add('GET', '/admin/totalLoan', Admin::class, 'renderTotalLoan');
 $route->add('POST', '/admin/searchTotalLoan', Admin::class, 'searchTotalLoan');
+$route->add('GET', '/admin/itemReport', Admin::class, 'renderItemReport');
+$route->add('GET', '/admin/loanReport', Admin::class, 'renderLoanReport');
+$route->add('GET', '/admin/returnReport', Admin::class, 'renderReturnReport');
 
 //admin crud
 $route->add('POST', '/admin/addUser', Admin::class, 'createUser');
@@ -36,6 +39,7 @@ $route->add('POST', '/admin/addItem', Admin::class, 'createItem');
 $route->add('POST', '/admin/editItem', Admin::class, 'editItem');
 $route->add('POST', '/admin/deleteItem', Admin::class, 'deleteItem');
 $route->add('POST', '/admin/updateStatusLoan', Admin::class, 'updateStatusLoanById');
+$route->add('POST', '/admin/getItem', Admin::class, 'getItem');
 
 // borrower render
 $route->add('GET', '/borrower/home', Borrower::class, 'renderHome');

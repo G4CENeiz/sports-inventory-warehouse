@@ -45,8 +45,8 @@
       <thead>
         <tr>
           <th scope="col">Loan Id</th>
-          <th scope="col">User Id</th>
-          <th scope="col">Item Id</th>
+          <th scope="col">Username</th>
+          <th scope="col">Item Name</th>
           <th scope="col">Quantity</th>
           <th scope="col">Loan Date</th>
           <th scope="col">Due Date</th>
@@ -58,8 +58,8 @@
           <?php if ($loan['ReturnDate'] !== NULL) { ?>
             <tr>
               <td><?= $loan['LoanId'] ?></td>
-              <td><?= $loan['UserId'] ?></td>
-              <td><?= $loan['ItemId'] ?></td>
+              <td><?= $loan['Username'] ?></td>
+              <td><?= $loan['ItemName'] ?></td>
               <td><?= $loan['Quantity'] ?></td>
               <td><?= $loan['LoanDate'] ?></td>
               <td><?= $loan['DueDate'] ?></td>

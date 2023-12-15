@@ -43,7 +43,21 @@
   <!-- content -->
   <div class="container">
     <h2>Inventory Management</h2>
-    <a class="btn btn-primary" href="/admin/addItem">Add Item</a>
+        <!-- Search Form -->
+        <form class="d-flex" role="search" action="/admin/getItem" method="post">
+        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="data">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form><br>
+    <div class="row col-md-5">
+      <div class="col">
+        <a style="width: 100%;" class="btn btn-primary" href="/admin/addItem">Add Item</a>
+      </div>
+      <div class="col col-md-5">
+        <a style="width: 100%;" class="btn btn-success" href="/admin/itemReport">Print Item Report</a>
+      </div>
+      <div class="col col-md-2">
+      </div>
+    </div>
     <table class="table table-striped table-hover">
       <thead>
         <tr>

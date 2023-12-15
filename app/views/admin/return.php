@@ -47,15 +47,18 @@
     <!-- content -->
     <div class="container">
       <h2>Return Item</h2>
+      <a style="width: 20%;" class="btn btn-success" href="/admin/returnReport">Print Return Report</a>
+
       <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Loan Id</th>
-            <th scope="col">User Id</th>
-            <th scope="col">Item Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Item Name</th>
             <th scope="col">Quantity</th>
             <th scope="col">Loan Date</th>
             <th scope="col">Due Date</th>
+            <th scope="col">Overdue</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -64,11 +67,19 @@
             <?php if ($loan['Status'] === 'Accepted') { ?>
               <tr>
                 <td><?php echo $loan['LoanId']; ?></td>
-                <td><?php echo $loan['UserId']; ?></td>
-                <td><?php echo $loan['ItemId']; ?></td>
+                <td><?php echo $loan['Username']; ?></td>
+                <td><?php echo $loan['ItemName']; ?></td>
                 <td><?php echo $loan['Quantity']; ?></td>
                 <td><?php echo $loan['LoanDate']; ?></td>
                 <td><?php echo $loan['DueDate']; ?></td>
+                <?php 
+                $currentDate = date("Y-m-d");
+                $isOverdue = ($loan['DueDate'] < $currentDate && $loan['ReturnDate'] > $loan['DueDate']);
+                if ($isOverdue) { ?>
+                    <td>Overdue</td>
+                <?php } else { ?>
+                    <td>Not Overdue</td>
+                <?php } ?>
                 <td>
                   <?php if ($loan['ReturnDate'] !== NULL) { ?>
                     <form action="/admin/returnItem" method="post">

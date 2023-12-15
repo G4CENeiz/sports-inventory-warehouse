@@ -47,12 +47,11 @@
     <h2>Loan Requests</h2>  
 
     <!-- Search Form -->
-    <form action="/admin/searchTotalLoan" method="post">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Enter Username" name="searchUsername">
-            <button class="btn btn-primary" type="submit">Search</button>
-        </div>
-    </form>
+    <form class="d-flex" role="search" action="/admin/searchTotalLoan" method="post">
+        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="searchUsername">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
 
     <!-- Table to Display Loan Information -->
     <table class="table table-striped table-hover">
