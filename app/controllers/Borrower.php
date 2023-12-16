@@ -23,8 +23,9 @@ class Borrower {
     }
 
     public function renderLoan() {
+        $user = $_SESSION['Username'];
         $loan = new Loan();
-        $loan_data = $loan->getJoinLoan();
+        $loan_data = $loan->getByUsername($user);
         require_once '../app/views/borrower/loan.php';
     }
 

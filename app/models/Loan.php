@@ -139,26 +139,6 @@ class Loan {
         }
     }
 
-    public function getJoinLoan() {
-        try {
-            $query = "SELECT 
-                            L.[LoanId], L.[ItemId], L.[UserId], L.[Quantity], L.[LoanDate], L.[DueDate], L.[ReturnDate], L.[Status], U.[Username], I.[ItemName]
-                        FROM 
-                            [master].[dbo].[Loan] AS L
-                        JOIN
-                            [Users] AS U ON L.[UserId] = U.[UserId]
-                        JOIN
-                            [Items] AS I ON L.[ItemId] = I.[ItemId]";
-            $stmt = $this->connect->prepare($query);
-            $stmt->execute();
-
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return null;
-        }
-    }
-
     public function GetTotalItemsLoanedByUser($username) {
         try {
             $query = "SELECT 

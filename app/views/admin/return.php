@@ -94,7 +94,7 @@
                 <td><?php echo $loan['DueDate']; ?></td>
                 <?php 
                 $currentDate = date("Y-m-d");
-                $isOverdue = ($loan['DueDate'] < $currentDate && $loan['ReturnDate'] > $loan['DueDate']);
+                $isOverdue = (($loan['ReturnDate'] !== null && $loan['ReturnDate'] > $loan['DueDate']) || ($loan['ReturnDate'] === null && $currentDate > $loan['DueDate']));
                 if ($isOverdue) { ?>
                     <td>Overdue</td>
                 <?php } else { ?>
