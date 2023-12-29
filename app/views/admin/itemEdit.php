@@ -70,7 +70,7 @@
   <!-- form -->
   <div class="container">
     <h2>Edit Item</h2>
-    <form action="/admin/addItem" method="POST">
+    <form action="/admin/editItem" method="POST">
       <input type="hidden" name="ItemId" value="<?php echo $itemData['ItemId']; ?>">
       <div class="mb-3">
         <label for="ItemName" class="form-label">Item Name</label>
