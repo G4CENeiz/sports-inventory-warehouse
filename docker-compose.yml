@@ -11,5 +11,14 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Password321
+  php:
+    build: 
+      context: ./php
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ./:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
 volumes:
   mssql_data:
